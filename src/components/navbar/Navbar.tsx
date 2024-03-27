@@ -1,4 +1,4 @@
-import netflixLogo from '../assets/netflix_logo.svg';
+import netflixLogo from '../../assets/netflix_logo.svg';
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { BsBell } from "react-icons/bs";
 
