@@ -35,7 +35,7 @@ export default function Navbar() {
     ];
 
     return (
-        <div className="bg-black sticky top-0 left-0 h-16 flex justify-between items-center px-12">
+        <div className="bg-netflix-black sticky top-0 left-0 h-16 flex justify-between items-center px-12">
             <div className="flex gap-5 items-center">
                 <img 
                     src={netflixLogo}
@@ -44,12 +44,14 @@ export default function Navbar() {
                     />
 
                 {
-                    links.map(link => <Link linkName={link.name}></Link>)
+                    links.map(link => <Link linkName={ link.name }></Link>)
                 }
             </div>
             <div className="flex gap-5 items-center">
                 <HiMagnifyingGlass className='cursor-pointer'/>
-                <Link linkName="Jeunesse"></Link>
+                <div className="hidden lg:block">
+                    <Link linkName="Jeunesse"></Link>
+                </div>
                 <BsBell className='cursor-pointer'/>
                 <ProfileManager></ProfileManager>
             </div>

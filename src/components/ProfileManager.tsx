@@ -1,9 +1,7 @@
-import { useState } from "react";
-import { BiSolidDownArrow } from "react-icons/bi";
+import { ReactNode, useState } from "react";
 import { CiEdit } from "react-icons/ci";
-import { BiTransferAlt } from "react-icons/bi";
+import { BiTransferAlt, BiHelpCircle, BiSolidDownArrow } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
-import { BiHelpCircle } from "react-icons/bi";
 
 function ProfileEntry({ username } : { username : string }) {
     return (
@@ -16,6 +14,16 @@ function ProfileEntry({ username } : { username : string }) {
             <div>
                 { username }
             </div>
+        </div>
+    )
+}
+
+function SettingEntry({ children, text } : { children: ReactNode, text : string}) {
+
+    return (
+        <div className="flex gap-2 items-center">
+            { children }
+            <div>{ text }</div>
         </div>
     )
 }
@@ -34,22 +42,22 @@ function MenuHover({ isHovered, profiles } : { isHovered : boolean, profiles : s
                         })
                     }
 
-                    <div className="flex gap-2 items-center">
+                    <SettingEntry text="Gérer les profils">
                         <CiEdit className="size-8"></CiEdit>
-                        <div>Gérer les profils</div>
-                    </div>
-                    <div className="flex gap-2 items-center">
+                    </SettingEntry>
+
+                    <SettingEntry text="Transférer un profil">
                         <BiTransferAlt className="size-8"></BiTransferAlt>
-                        <div>Transférer un profil</div>
-                    </div>
-                    <div className="flex gap-2 items-center">
+                    </SettingEntry>
+
+                    <SettingEntry text="Compte">
                         <BsPerson className="size-8"></BsPerson>
-                        <div>Compte</div>
-                    </div>
-                    <div className="flex gap-2 items-center">
+                    </SettingEntry>
+
+                    <SettingEntry text="Centre d'aide">
                         <BiHelpCircle className="size-8"></BiHelpCircle>
-                        <div>Centre d'aide</div>
-                    </div>
+                    </SettingEntry>
+
                 </div>
                 <div className="h-[1px] w-48 bg-gray-600"></div>
                 <div className="py-3 text-center">
@@ -74,10 +82,10 @@ export default function ProfileManager() {
         <div 
             className="relative"
             onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(true)}>
+            onMouseLeave={() => setIsHovered(false)}>
 
             <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded border-solid border-white relative flex justify-center items-center">
+                <div className="w-8 h-8 rounded border-solid border-netflix-white relative flex justify-center items-center">
                     <span className="font-bold">
                         {currentProfile.at(0)}
                     </span>

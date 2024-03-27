@@ -5,16 +5,15 @@ module.exports = {
     "./**/*.html"
   ],
   theme: {
-    extends: {
+    extend: {
       colors: {
-        'red': '#E50914',
-        'dark-red': '#B81D24',
-        // 'black': '#221F1F',
-        'black': '#141414',
-        'white': '#FFF',
-        'grey': '#b3b3b3'
+        'netflix-red': '#E50914',
+        'netflix-dark-red': '#B81D24',
+        'netflix-black': '#141414',
+        'netflix-white': '#FFF',
+        'netflix-grey': '#b3b3b3'
       }
-    },
+    }
   },
   plugins: [],
 }
