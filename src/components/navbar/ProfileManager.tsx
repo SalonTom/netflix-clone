@@ -31,13 +31,13 @@ function SettingEntry({ children, text } : { children: ReactNode, text : string}
 function MenuHover({ isHovered, profiles } : { isHovered : boolean, profiles : string[] }) {
     if (isHovered) {
         return <> 
-            <div className="bg-black bg-opacity-90 absolute top-full right-0 w-48 mt-4 text-sm">
+            <div className="bg-black bg-opacity-80 absolute top-full right-0 w-48 mt-4 text-sm">
             
                 <div className="flex flex-col gap-2 px-2 py-4">
                     {
                         profiles.map(profile => {
                             return <>
-                                <ProfileEntry username={profile}/>
+                                <ProfileEntry key={profile} username={profile}/>
                             </>
                         })
                     }
