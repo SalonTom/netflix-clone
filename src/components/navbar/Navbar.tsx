@@ -41,7 +41,7 @@ function CategorySelector() {
         <>      
             <div className='hidden gap-5 items-center lg:flex'>
                 {
-                    links.map(link => <Link linkName={ link.name }></Link>)
+                    links.map(link => <Link key={link.name} linkName={ link.name }></Link>)
                 }
             </div>
             <div className='lg:hidden' style={{fontSize : "1.2vw"}}>
@@ -56,9 +56,9 @@ function CategorySelector() {
                 {
                     isOpen && 
                     <>
-                        <div className='absolute top-full left-0 ml-4 w-2/5 text-center p-2 bg-netflix-black bg-opacity-90 flex flex-col border-solid border-t-2 border-t-netflix-white border-x-[1px] border-x-zinc-800 border-b-[1px] border-b-zinc-800'>
+                        <div className='absolute top-full left-0 ml-4 w-2/5 text-center p-2 bg-netflix-black bg-opacity-80 flex flex-col border-solid border-t-2 border-t-netflix-white border-x-[1px] border-x-zinc-800 border-b-[1px] border-b-zinc-800'>
                             {
-                                links.map(link => <Link linkName={ link.name } onClick={() => setIsOpen(false)}></Link>)
+                                links.map(link => <Link key={link.name} linkName={ link.name } onClick={() => setIsOpen(false)}></Link>)
                             }
                         </div>
                     </>
@@ -72,7 +72,7 @@ function CategorySelector() {
 export default function Navbar() {
 
     return (
-        <div className="bg-netflix-black sticky top-0 left-0 h-16 flex justify-between items-center px-12">
+        <div className="bg-netflix-black sticky top-0 left-0 h-16 flex justify-between items-center px-12 z-10">
             <div className='flex items-center'>
                 <img 
                     src={netflixLogo}
