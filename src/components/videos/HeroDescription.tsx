@@ -1,14 +1,15 @@
 import { PiFilmSlateBold } from "react-icons/pi";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import INetflixElement from "../../models/i-netflixElement";
 
-export default function HeroDescription({ element } : { element : any }) {
+export default function HeroDescription({ element } : { element : INetflixElement }) {
     return (
         <>
             <div className="flex flex-col gap-4 max-w-lg">
-                <div className="text-7xl">
+                <div className="text-[4.5vw]">
                     {element.media_type === 'tv' ? element.name : element.title}
                 </div>
-                <div className="text-lg max-w-lg line-clamp-4 lg:text-[1.25vw] lg:line-clamp-none">
+                <div className="text-[1.2vw] max-w-[30vw] line-clamp-4 lg:line-clamp-none">
                     { element.overview }
                 </div>
             </div>

@@ -29,14 +29,15 @@ export default function Homepage() {
         <>
             {
                 heroSectionElement &&
-                    <div className="min-h-screen w-auto" style={{ 
+                    <div className="min-h-screen w-[100vw]" style={{ 
                         backgroundImage: `url(${process.env.REACT_APP_IMAGE_URL}${heroSectionElement.backdrop_path})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
+                        boxShadow: 'rgb(20, 20, 20) 0px -24px 36px 14px inset'
                     }}>
                         <Navbar></Navbar>
-                        <ContentSection heroSectionElement={heroSectionElement}></ContentSection>
+                        <ContentSection heroSectionElement={heroSectionElement} trendingList={trendingList}></ContentSection>
                     </div>
             }
         </>

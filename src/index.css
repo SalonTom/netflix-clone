@@ -13,3 +13,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.video {
+  transform: scale(1);
+  transition: 0.3s ease-in-out;
+}
+
+.video:hover {
+  transform: scale(1.8);
+  box-shadow: rgba(0, 0, 0, 0.8) 0px 7px 29px 0px;
+  z-index: 3;
+}
