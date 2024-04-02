@@ -1,36 +1,40 @@
 import { useEffect, useState } from "react";
 import INetflixElement from "../../models/i-netflixElement";
 
-export default function VideoCard({ index, element, onHover } : { index : number, element : INetflixElement, onHover : (...args: any[]) => any }) {
+export default function VideoCard({ index, element, cardHeight, cardWidth, onHover } : { index : number, element : INetflixElement, cardHeight : number, cardWidth : number,onHover : (...args: any[]) => any }) {
 
     const [cardIsHovered, setCardIsHovered] = useState(false);
-    const [cardTransformProperty, setCardTransformProperty] = useState('none');
 
     function onCardHover() {
         setTimeout(() => {
             onHover();
             setCardIsHovered(true)
-        }, 200);
+        }, 500);
     };
 
     function onCardLeave() {
         setTimeout(() => {
             setCardIsHovered(false)
-        }, 200);
+        }, 500);
     }
 
-    useEffect(() => {
-        if (cardIsHovered) setCardTransformProperty('scale(1.8)')
-        else setCardTransformProperty('none')
-    }, [cardIsHovered])
-
     return (
-        <img 
+        <div
             onMouseEnter={() => onCardHover()}
             onMouseLeave={() => onCardLeave()}
-            className="w-[28vw] md:w-[20vw] lg:w-[13.5vw] h-auto rounded duration-500 cursor-pointer"
-            src={`${process.env.REACT_APP_IMAGE_URL}${element.backdrop_path}`}
-            style={{order: `${index}`, transform: `${cardTransformProperty}`}}
-            alt={`Affiche de ${element.media_type === 'tv' ? element.name : element.title}`}></img>
+            className="relative rounded duration-500 cursor-pointer overflow-hidden"
+            style={{order: `${index}`, width : `${cardWidth}px`, height : `${cardHeight}px`}}>
+            <img 
+                className="absolute top-0 left-0 w-full h-auto"
+                src={`${process.env.REACT_APP_IMAGE_URL}${element.backdrop_path}`}
+                alt={`Affiche de ${element.media_type === 'tv' ? element.name : element.title}`}></img>
+
+            {
+                cardIsHovered &&
+                    <div className="absolute top-1/2 left-1/2 h-8 w-8 bg-blue-900">
+                        test
+                    </div>
+            }
+        </div>
     )
 }

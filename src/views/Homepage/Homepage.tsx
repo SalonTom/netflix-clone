@@ -1,23 +1,22 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import ApiService from "../../service/apiService";
-import NetflixElement from "../../models/i-netflixElement"
+import INetflixElement from "../../models/i-netflixElement"
 import ContentSection from "../../components/videos/ContentSection";
-import INetflixElement from "../../models/i-netflixElement";
 
 export default function Homepage() {
 
-    const [trendingList, setTrendingList] = useState<NetflixElement[]>([]);
+    const [trendingList, setTrendingList] = useState<INetflixElement[]>([]);
 
-    const [heroSectionElement, setHeroSectionElement] = useState<NetflixElement>();
+    const [heroSectionElement, setHeroSectionElement] = useState<INetflixElement>();
 
-    function getRandomElement(list : NetflixElement[]) : NetflixElement {
+    function getRandomElement(list : INetflixElement[]) : INetflixElement {
         return list[Math.floor(Math.random() * list.length)];
     }
 
     useEffect(() => {
         const loadData = async () => {
-            const trendingList : NetflixElement[] = await ApiService.getMoviesListAsync();
+            const trendingList : INetflixElement[] = await ApiService.getMoviesListAsync();
             setTrendingList(trendingList);
             setHeroSectionElement(getRandomElement(trendingList));
         }

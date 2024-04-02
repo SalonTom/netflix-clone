@@ -8,13 +8,20 @@ export default function VideoSlider({ sliderTitle, videosList } : { sliderTitle 
     const [miniatureOrder, setMiniatureOrder] = useState<number[]>([]);
 
     const [currentElement, setCurrentElement] = useState(0);
-
     
     const [sliderIsHovered, setSliderIsHovered] = useState(false);
 
     const [titleIsHovered, setTitleIsHovered] = useState(false);
 
     const [exploreSectionSize, setExploreSectionSize] = useState('0px');
+
+    const [cardWidth, setCardWith] = useState(0);
+
+    const [cardHeight, setCardHeight] = useState(0);
+
+    const [sliderButtonsWidth, setSliderButtonsWidth] = useState(0);
+
+    const [sliderWidth, setSliderWidth] = useState(0);
 
     useEffect(() => {
         setMiniatureOrder(Array.from(Array(videosList.length).keys()))
@@ -27,6 +34,29 @@ export default function VideoSlider({ sliderTitle, videosList } : { sliderTitle 
         setCurrentElement((currentElement + 1) % videosList.length)
     }
 
+    const setElementsSize = () => {
+        let nbMiniatures : number = 6;
+        const windowWidth : number = window.outerWidth;
+        console.log(windowWidth);
+
+        if (windowWidth < 1024 && windowWidth >= 768) {
+            nbMiniatures = 4;
+        } else if (windowWidth < 768) {
+            nbMiniatures = 3;
+        }
+
+        let sliderWidth = windowWidth*0.97 - 16;
+
+        // 0.5 added to take into consideration the size of the slider buttons that are 1/4 the size of the card.
+        const cardWidth : number = (sliderWidth - (nbMiniatures - 1) * 12) / (nbMiniatures + 0.5);
+        const sliderButtonsWidth : number = cardWidth / 2;
+
+        setCardWith(cardWidth);
+        setCardHeight(cardWidth * 9/16);
+        setSliderButtonsWidth(sliderButtonsWidth);
+        setSliderWidth(sliderWidth);
+    }
+
     useEffect(() => {
         if (titleIsHovered) {
             setExploreSectionSize('fit-content');
@@ -34,13 +64,21 @@ export default function VideoSlider({ sliderTitle, videosList } : { sliderTitle 
             setExploreSectionSize('0px');
         }
     }, [titleIsHovered])
+
+    useEffect(() => {
+        
+        setElementsSize();
+
+        window.addEventListener('resize', (event) => {
+            setElementsSize();
+        });
+    }, [])
     
     return (
         <div 
             onMouseEnter={() => setSliderIsHovered(true)}
-            onMouseLeave={() => setSliderIsHovered(false)}
-            className="absolute top-[83vh] left-[3vw]">
-            <div className="my-[3vh]">
+            onMouseLeave={() => setSliderIsHovered(false)}>
+            <div className="my-[3vh] relative" style={{ width: `${sliderWidth}px`}}>
                 <div className="mb-3 flex justify-between items-center">
                     <div 
                         onMouseEnter={() => setTitleIsHovered(true)}
@@ -78,25 +116,31 @@ export default function VideoSlider({ sliderTitle, videosList } : { sliderTitle 
                         </div>
                     }
                 </div>
-                <div className="flex gap-3 max-w-[96vw] relative">
+                <div className="flex gap-3 w-fit">
                     {
                         !!videosList ?
-                            videosList.map((element, index) => <VideoCard index={miniatureOrder[index]} element={element} onHover={() => setSliderIsHovered(false)}/>)
+                            videosList.map((element, index) => 
+                                <VideoCard 
+                                    index={miniatureOrder[index]} 
+                                    element={element} 
+                                    onHover={() => setSliderIsHovered(false)}
+                                    cardHeight={cardHeight}
+                                    cardWidth={cardWidth}/>)
                         :
                             <div>Loading ...</div>
                     }
 
-                    {
-                        sliderIsHovered && 
-                        <div 
-                            onClick={() => newOrder()}
-                            className="absolute right-0 bottom-0 top-0 w-32 h-full flex items-center justify-center cursor-pointer"
-                            style={{ background : "linear-gradient(270deg, rgba(20, 20, 20), rgba(20, 20, 20, 0.7) 25%, rgba(20, 20, 20, 0.5) 75%, transparent)"}}>
-                            <BiChevronRight className="size-8"></BiChevronRight>
-                        </div>
-                    }
-
                 </div>
+                {
+                    sliderIsHovered && 
+                    <div 
+                        onMouseEnter={() => setSliderIsHovered(true)}
+                        onClick={() => newOrder()}
+                        className="absolute right-0 bottom-0 rounded-l-lg flex items-center justify-center cursor-pointer h-full bg-netflix-black bg-opacity-70"
+                        style={{ width: `${sliderButtonsWidth}px`, height: `${cardHeight}px`}}>
+                        <BiChevronRight className="size-8"></BiChevronRight>
+                    </div>
+                }
             </div>
         </div>
     )
