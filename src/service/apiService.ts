@@ -29,7 +29,7 @@ export default class ApiService {
     public static async getPopularTvSeries() : Promise<NetflixElement[]> {
         try {
             const response = await AxiosUtils.getAxiosInstance().get(process.env.REACT_APP_URI_TV_TRENDING as string);
-            const popularTvSeries : NetflixElement[] = response.data["results"];
+            const popularTvSeries : NetflixElement[] = (response.data["results"] as NetflixElement[]).map(tvSeries => { tvSeries.media_type = 'tv'; return tvSeries});
 
             return Promise.resolve(popularTvSeries);
         } catch(error) {
