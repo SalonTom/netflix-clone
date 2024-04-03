@@ -72,7 +72,7 @@ function CategorySelector() {
 export default function Navbar() {
 
     return (
-        <div className="bg-netflix-black sticky top-0 left-0 h-16 flex justify-between items-center px-12 z-10">
+        <div className="bg-netflix-black sticky top-0 left-0 h-16 flex justify-between items-center px-[3vw] z-10">
             <div className='flex items-center'>
                 <img 
                     src={netflixLogo}

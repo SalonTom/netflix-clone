@@ -1,7 +1,8 @@
 export default interface INetflixElement {
     id: number,
     genre_ids: number[],
-    title: string,
+    title?: string,
+    name?: string,
     overview: string,
     poster_path: string,
     vote_count: number,
