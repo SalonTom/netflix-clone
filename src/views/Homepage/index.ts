@@ -1,2 +1,2 @@
-export * from './Homepage';
-export { default } from './Homepage'
+export * from './HomepageView';
+export { default } from './HomepageView'
