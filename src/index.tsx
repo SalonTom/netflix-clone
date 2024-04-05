@@ -2,14 +2,31 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import Homepage from './views/Homepage';
+import HomepageView from './views/Homepage';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import ProfilesView from './views/Profiles/ProfilesView';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <ProfilesView></ProfilesView>
+  },
+  {
+    path: "/browse",
+    element: <HomepageView></HomepageView>,
+  },
+]);
+
 root.render(
   <React.StrictMode>
-    <Homepage />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
