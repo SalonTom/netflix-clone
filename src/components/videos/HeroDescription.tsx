@@ -1,6 +1,7 @@
 import { PiFilmSlateBold } from "react-icons/pi";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import INetflixElement from "../../models/i-netflixElement";
+import { NetflixButton } from "../core/button/Button";
 
 export default function HeroDescription({ element } : { element : INetflixElement }) {
     return (
@@ -14,14 +15,14 @@ export default function HeroDescription({ element } : { element : INetflixElemen
                 </div>
             </div>
             <div className="flex gap-3 text-xl font-semibold mt-6">
-                <div className="flex items-center gap-3 h-fit pl-4 pr-5 py-2 bg-netflix-white text-netflix-black rounded cursor-pointer hover:bg-opacity-80">
+                <NetflixButton type="primary" hasIcon={true}>
                     <PiFilmSlateBold />
                     Lecture
-                </div>
-                <div className="flex items-center gap-3 h-fit pl-4 pr-5 py-2 bg-netflix-grey bg-opacity-80 text-netflix-white rounded cursor-pointer hover:bg-opacity-50">
+                </NetflixButton>
+                <NetflixButton type="secondary" hasIcon={true}>
                     <AiOutlineInfoCircle />
                     Plus d'infos
-                </div>
+                </NetflixButton>
             </div>
         </>
     )
