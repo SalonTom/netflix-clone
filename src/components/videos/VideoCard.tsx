@@ -4,6 +4,7 @@ import INetflixElement from "../../models/i-netflixElement";
 import { BsFillPlayFill } from "react-icons/bs";
 import { BiPlus, BiChevronDown } from "react-icons/bi";
 import { AiOutlineHeart } from "react-icons/ai";
+import { NetflixButtonCircle } from "../core/button/Button";
 
 export default function VideoCard({ index, element, cardHeight, cardWidth, onHover } : { index : number, element : INetflixElement, cardHeight : number, cardWidth : number,onHover : (...args: any[]) => any }) {
 
@@ -75,20 +76,23 @@ export default function VideoCard({ index, element, cardHeight, cardWidth, onHov
                         
                         <>
                             <div className="flex justify-between mb-2">
-                                <div className="flex gap-2">
-                                    <div className="flex justify-center items-center gap-3 size-4 md:size-6 lg:size-8 bg-netflix-white text-netflix-black rounded-full cursor-pointer hover:bg-opacity-80">
-                                        <BsFillPlayFill className="size-2 md:size-4 lg:size-6"/>
-                                    </div>
-                                    <div className="flex justify-center items-center gap-3 size-4 md:size-6 lg:size-8 bg-netflix-grey bg-opacity-80 text-netflix-white rounded-full cursor-pointer hover:bg-opacity-50">
-                                        <BiPlus className="size-2 md:size-4 lg:size-6"/>
-                                    </div>
-                                    <div className="flex justify-center items-center gap-3 size-4 md:size-6 lg:size-8 bg-netflix-grey bg-opacity-80 text-netflix-white rounded-full cursor-pointer hover:bg-opacity-50">
-                                        <AiOutlineHeart className="size-2 md:size-4"/>
-                                    </div>
+                                <div className="flex gap-1 md:gap-2">
+                                    <NetflixButtonCircle type="primary" onlyIcon={true}>
+                                        <BsFillPlayFill/>
+                                    </NetflixButtonCircle>
+
+                                    <NetflixButtonCircle type="secondary" onlyIcon={true}>
+                                        <BiPlus/>
+                                    </NetflixButtonCircle>
+
+                                    <NetflixButtonCircle type="secondary" onlyIcon={true}>
+                                        <AiOutlineHeart/>
+                                    </NetflixButtonCircle>
                                 </div>
-                                <div className="flex justify-center items-center gap-3 size-4 md:size-6 lg:size-8 bg-netflix-grey bg-opacity-80 text-netflix-white rounded-full cursor-pointer hover:bg-opacity-50">
-                                    <BiChevronDown className="size-2 md:size-4"/>
-                                </div>
+
+                                <NetflixButtonCircle type="secondary" onlyIcon={true}>
+                                    <BiChevronDown/>
+                                </NetflixButtonCircle>
                             </div>
                             
                             <div className="text-green-400">Recommandé(e) à { Math.floor(Math.random() * 100) }%</div>
