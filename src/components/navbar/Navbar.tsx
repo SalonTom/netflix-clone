@@ -4,7 +4,7 @@ import { BsBell } from "react-icons/bs";
 
 import Link from './Link';
 import ProfileManager from './ProfileManager';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BiSolidDownArrow } from 'react-icons/bi';
 
 function CategorySelector() {
@@ -71,8 +71,21 @@ function CategorySelector() {
 
 export default function Navbar() {
 
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const rootElmt : HTMLElement | null = document.getElementById('root');
+        
+        rootElmt?.addEventListener("scroll", () => {
+            if (rootElmt.scrollTop !== 0) setScrolled(true);
+            else setScrolled(false);
+        });
+    }, []);
+
     return (
-        <div className="bg-netflix-black sticky top-0 left-0 h-16 flex justify-between items-center px-[3vw] z-10">
+        <div 
+            className="sticky top-0 left-0 h-16 flex justify-between items-center px-[3vw] z-10 duration-500"
+            style={{ background: `${scrolled ? 'rgb(20 20 20)' : 'linear-gradient(180deg, #141414, transparent)'}`}}>
             <div className='flex items-center'>
                 <img 
                     src={netflixLogo}
