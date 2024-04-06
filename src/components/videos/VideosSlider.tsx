@@ -37,7 +37,6 @@ export default function VideoSlider({ sliderTitle, videosList } : { sliderTitle 
     const setElementsSize = () => {
         let nbMiniatures : number = 6;
         const windowWidth : number = window.outerWidth;
-        console.log(windowWidth);
 
         if (windowWidth < 1024 && windowWidth >= 768) {
             nbMiniatures = 4;
