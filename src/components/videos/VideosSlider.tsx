@@ -44,7 +44,7 @@ export default function VideoSlider({ sliderTitle, videosList } : { sliderTitle 
             nbMiniatures = 3;
         }
 
-        let sliderWidth = windowWidth*0.97 - 16;
+        const sliderWidth = windowWidth*0.97;
 
         // 0.5 added to take into consideration the size of the slider buttons that are 1/4 the size of the card.
         const cardWidth : number = (sliderWidth - (nbMiniatures - 1) * 12) / (nbMiniatures + 0.5);

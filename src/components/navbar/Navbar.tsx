@@ -77,13 +77,7 @@ export default function Navbar() {
         const rootElmt : HTMLElement | null = document.getElementById('root');
         
         rootElmt?.addEventListener("scroll", () => {
-            if (!scrolled) {
-                setScrolled(true);
-            } else {
-                setTimeout(() => {
-                    setScrolled(rootElmt.scrollTop !== 0);
-                }, 1000)
-            }
+            setScrolled(rootElmt.scrollTop == 0);
         });
     }, []);
 
